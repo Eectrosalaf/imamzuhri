@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
-import 'package:imamzuhri/screens/reset_password.dart';
+
 import 'package:imamzuhri/utils/constants.dart';
 import 'package:imamzuhri/widgets/buttons.dart';
 
+import '../services/authmethod.dart';
+import '../widgets/alert.dart';
 import '../widgets/textfield.dart';
 
 class ForgetPassword extends StatefulWidget {
@@ -15,6 +17,9 @@ class ForgetPassword extends StatefulWidget {
 }
 
 class _ForgetPasswordState extends State<ForgetPassword> {
+  TextEditingController emailController = TextEditingController();
+  AuthenticationMethods authenticationMethods = AuthenticationMethods();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +41,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                       onPressed: () {
                         Navigator.pop(context);
                       },
-                      icon:  const Icon(
+                      icon: const Icon(
                         Icons.navigate_before,
                         size: 30,
                         color: Colors.white,
@@ -75,33 +80,73 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                     color: Colors.black,
                   ),
                 ),
-                 const SizedBox(
+                const SizedBox(
                   height: 8,
                 ),
-                const CustomTextfield(
+                CustomTextfield(
+                  controller:emailController ,
                   hintText: "Enter email",
-                  hintStyle: TextStyle(color: Colors.grey),
+                  hintStyle: const TextStyle(color: Colors.grey),
                 ),
-              
                 const SizedBox(
                   height: 400,
                 ),
                 Botton(
                     bcolour: Colors.transparent,
                     colour: DesignColors.primaryColor,
-                    gradient: const LinearGradient(
-                        colors: [ Color(0xff0d5c58),
-                                          Color.fromARGB(255, 21, 168, 161)],
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter),
+                    gradient: const LinearGradient(colors: [
+                      Color(0xff0d5c58),
+                      Color.fromARGB(255, 21, 168, 161)
+                    ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
                     tcolour: Colors.white,
                     title: 'Send Link',
-                    onPressed: () {
+                    onPressed: () async {
+                      String output = await authenticationMethods.resetpassword(
+                        email: emailController.text,
+                        // password: passwordController.text,
+                      );
 
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const ResetPassword()));
+                      emailController.clear();
+
+                      //passwordController.clear();
+
+                      if (output == 'success') {
+                        showDialog(
+                            // ignore: use_build_context_synchronously
+                            context: context,
+                            builder: (context) {
+                              return AnimatedContainer(
+                                duration: const Duration(seconds: 10),
+                                curve: Curves.linearToEaseOut,
+                                child: Notifyalert(
+                                    onpressed: () {
+                                      Navigator.pushNamed(
+                                          context, '/loginscreen');
+                                    },
+                                    title: 'check your email to reset password',
+                                    btntitle: 'Log in Again',
+                                    details: output),
+                              );
+                            });
+                      } else {
+                        showDialog(
+                            // ignore: use_build_context_synchronously
+                            context: context,
+                            builder: (context) {
+                              return AnimatedContainer(
+                                duration: const Duration(seconds: 10),
+                                curve: Curves.linearToEaseOut,
+                                child: Notifyalert(
+                                    onpressed: () {
+                                      Navigator.pushNamed(
+                                          context, '/forgotscreen');
+                                    },
+                                    title: 'Opps!',
+                                    btntitle: 'Log in Again',
+                                    details: output),
+                              );
+                            });
+                      }
                     }),
               ],
             ),

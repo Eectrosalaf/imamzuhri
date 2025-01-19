@@ -83,7 +83,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                 color: DesignColors.primaryColor,
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(15))),
-
+        
                             height: 330,
                             width: double.infinity,
                             // color: DesignColors.primaryColor,

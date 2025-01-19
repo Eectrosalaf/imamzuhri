@@ -295,7 +295,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       phoneController.clear();
 
                       if (output == 'success') {
-                        print('output');
+                        //print('output');
                         showDialog(
                             // ignore: use_build_context_synchronously
                             context: context,

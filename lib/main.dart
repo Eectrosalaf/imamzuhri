@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:imamzuhri/screens/forget_password.dart';
 import 'package:imamzuhri/screens/homescreen.dart';
 import 'package:imamzuhri/screens/loginscreen.dart';
 import 'package:imamzuhri/screens/onboardingscreen.dart';
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
         '/onboarding':(context)=>const OnboardingScreen(),
         '/loginscreen':(context)=>const LoginScreen(),
         '/signupscreen':(context)=>const SignupScreen(),
+        '/forgotscreen':(context)=>const ForgetPassword(),
 
       },
     );
