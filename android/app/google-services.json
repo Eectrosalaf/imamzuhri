@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "826611651442",
+    "project_id": "imamzuri",
+    "storage_bucket": "imamzuri.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:826611651442:android:2ad7b39805b349a62d03eb",
+        "android_client_info": {
+          "package_name": "com.example.imamzuhri"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEy1R3AUDKnSDFBR96T36_SuJtaAYv4ko"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
