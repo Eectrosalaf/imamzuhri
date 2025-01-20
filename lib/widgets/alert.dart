@@ -33,6 +33,8 @@ class Notifyalert extends StatelessWidget {
               
               Text(
                 title!,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.center,
                 style: GoogleFonts.poppins(
                   fontWeight: FontWeight.bold,
                   fontSize: 23,

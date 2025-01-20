@@ -84,7 +84,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                   height: 8,
                 ),
                 CustomTextfield(
-                  controller:emailController ,
+                  controller: emailController,
                   hintText: "Enter email",
                   hintStyle: const TextStyle(color: Colors.grey),
                 ),
@@ -103,12 +103,9 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                     onPressed: () async {
                       String output = await authenticationMethods.resetpassword(
                         email: emailController.text,
-                        // password: passwordController.text,
                       );
 
                       emailController.clear();
-
-                      //passwordController.clear();
 
                       if (output == 'success') {
                         showDialog(
