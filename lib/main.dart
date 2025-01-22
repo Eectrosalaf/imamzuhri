@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:imamzuhri/screens/forget_password.dart';
@@ -6,9 +7,11 @@ import 'package:imamzuhri/screens/loginscreen.dart';
 import 'package:imamzuhri/screens/onboardingscreen.dart';
 import 'package:imamzuhri/screens/signupscreen.dart';
 import 'package:imamzuhri/screens/splashscreen.dart';
+import 'package:imamzuhri/utils/constants.dart';
+import 'package:shimmer/shimmer.dart';
 
-void main() async{
-   WidgetsFlutterBinding.ensureInitialized();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const MyApp());
 }
@@ -16,29 +19,43 @@ void main() async{
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
- 
   @override
   Widget build(BuildContext context) {
-    
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-      
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const SplashScreen(),
+      home: StreamBuilder(
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (context, AsyncSnapshot<User?> user) {
+            if (user.connectionState == ConnectionState.waiting) {
+              return Shimmer.fromColors(
+                
+                              baseColor: Colors.transparent,
+                              period:const Duration(milliseconds: 100),
+                              highlightColor: DesignColors.primaryColor,
+                              child: const LoginScreen(),
+                            );
+            } else if (user.hasData) {
+              //FirebaseAuth.instance.signOut();
+              
+              return const Homescreen();
+            } else {
+               return const SplashScreen();
+           
+            }
+          }),
       routes: {
-        '/splashscreen':(context)=>const SplashScreen(),
-         '/homescreen':(context)=>const Homescreen(),
-        '/onboarding':(context)=>const OnboardingScreen(),
-        '/loginscreen':(context)=>const LoginScreen(),
-        '/signupscreen':(context)=>const SignupScreen(),
-        '/forgotscreen':(context)=>const ForgetPassword(),
-
+        '/splashscreen': (context) => const SplashScreen(),
+        '/homescreen': (context) => const Homescreen(),
+        '/onboarding': (context) => const OnboardingScreen(),
+        '/loginscreen': (context) => const LoginScreen(),
+        '/signupscreen': (context) => const SignupScreen(),
+        '/forgotscreen': (context) => const ForgetPassword(),
       },
     );
   }
 }
-
