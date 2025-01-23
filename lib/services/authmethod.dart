@@ -1,8 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:imamzuhri/services/cloudfirestore.dart';
+
+import '../model/userdetailsmodel.dart';
 
 class AuthenticationMethods {
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
-//  CloudFirestoreClass cloudFirestoreClass = CloudFirestoreClass();
+  CloudFirestoreClass cloudFirestoreClass = CloudFirestoreClass();
 
   Future<String> signUpUser(
       {required String name,
@@ -28,8 +31,13 @@ class AuthenticationMethods {
       try {
         await firebaseAuth.createUserWithEmailAndPassword(
             email: email, password: password);
-        //   UserDetailsModel user = UserDetailsModel(name: name, address: address);
-        //   await cloudFirestoreClass.uploadNameAndAddressToDatabase(user: user);
+        UserDetailsModel user = UserDetailsModel(
+            name: name,
+            address: address,
+            phone: phone,
+            category: category,
+            email: email);
+        await cloudFirestoreClass.uploadNameAndAddressToDatabase(user: user);
         output = "success";
       } on FirebaseAuthException catch (e) {
         output = e.message.toString();
@@ -50,8 +58,7 @@ class AuthenticationMethods {
       try {
         await firebaseAuth.signInWithEmailAndPassword(
             email: email, password: password);
-        //   UserDetailsModel user = UserDetailsModel(name: name, address: address);
-        //   await cloudFirestoreClass.uploadNameAndAddressToDatabase(user: user);
+
         output = "success";
       } on FirebaseAuthException catch (e) {
         output = e.message.toString();

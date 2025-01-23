@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:imamzuhri/screens/loginscreen.dart';
 
 class Homescreen extends StatefulWidget {
   const Homescreen({super.key});
@@ -8,14 +10,17 @@ class Homescreen extends StatefulWidget {
 }
 
 class _HomescreenState extends State<Homescreen> {
+  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Column(
-        children: [
-
-          Text('Homescree.',style: TextStyle(fontSize: 50),)
-        ],
+    return Scaffold(
+      body: Center(
+        child: ElevatedButton(
+            onPressed: () {
+              FirebaseAuth.instance.signOut();
+              //return const LoginScreen();
+            },
+            child: const Text('sign out')),
       ),
     );
   }

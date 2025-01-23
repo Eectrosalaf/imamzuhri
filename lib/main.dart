@@ -9,7 +9,7 @@ import 'package:imamzuhri/screens/signupscreen.dart';
 import 'package:imamzuhri/screens/splashscreen.dart';
 import 'package:imamzuhri/utils/constants.dart';
 import 'package:shimmer/shimmer.dart';
-
+ FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -35,12 +35,13 @@ class MyApp extends StatelessWidget {
               return Shimmer.fromColors(
                 
                               baseColor: Colors.transparent,
-                              period:const Duration(milliseconds: 100),
+                              period:const Duration(seconds: 2),
                               highlightColor: DesignColors.primaryColor,
                               child: const LoginScreen(),
                             );
             } else if (user.hasData) {
-              //FirebaseAuth.instance.signOut();
+              
+              print("${firebaseAuth.currentUser!.uid}");
               
               return const Homescreen();
             } else {

@@ -142,49 +142,8 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
                 CustomTextfield(
                   controller: addressController,
-                  //suffixIcon: const Icon(Icons.arrow_drop_down),
-                  // onSuffixIconTapped: () {
-                  //   CountrySelector(
-                  //     context: context,
-                  //     countryPreferred: <String>['US'],
-                  //     showPhoneCode: false,
-                  //     appBarTitle: "Select Country",
-                  //     onSelect: (Country country) {
-                  //       setState(() {
-                  //         selectedcountry = countryController.text;
-                  //       });
-                  //       // Handle selected country
-                  //     },
-                  //     listType: ListType.list,
-                  //     appBarBackgroundColour: Colors.black,
-                  //     appBarFontSize: 20,
-                  //     appBarFontStyle: FontStyle.normal,
-                  //     appBarFontWeight: FontWeight.bold,
-                  //     appBarTextColour: Colors.white,
-                  //     appBarTextCenterAlign: true,
-                  //     backgroundColour: Colors.white,
-                  //     backIcon: Icons.arrow_back,
-                  //     backIconColour: Colors.white,
-                  //     countryFontStyle: FontStyle.normal,
-                  //     countryFontWeight: FontWeight.bold,
-                  //     countryTextColour: Colors.black,
-                  //     countryTitleSize: 16,
-                  //     dividerColour: Colors.black12,
-                  //     searchBarAutofocus: true,
-                  //     searchBarIcon: Icons.search,
-                  //     searchBarBackgroundColor: Colors.white,
-                  //     searchBarBorderColor: Colors.black,
-                  //     searchBarBorderWidth: 2,
-                  //     searchBarOuterBackgroundColor: Colors.white,
-                  //     searchBarTextColor: Colors.black,
-                  //     searchBarHintColor: Colors.black,
-                  //     countryTheme: const CountryThemeData(
-                  //       appBarBorderRadius: 10,
-                  //       // Add customization options here
-                  //     ),
-                  //     showSearchBox: true,
-                  //   );
-                  // },
+              
+                 
                   hintText: 'Address',
                   hintStyle: const TextStyle(color: Colors.grey),
                 ),
@@ -222,6 +181,10 @@ class _SignupScreenState extends State<SignupScreen> {
                   height: 8,
                 ),
                 CustomTextfield(
+                  onSuffixIconTapped:(){
+                    
+                  } ,
+                  suffixIcon: const Icon(Icons.arrow_drop_down,size: 20,),
                   controller: categoryController,
                   hintText: "Category",
                   hintStyle: const TextStyle(color: Colors.grey),
