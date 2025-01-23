@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
                             );
             } else if (user.hasData) {
               
-              print("${firebaseAuth.currentUser!.uid}");
+             // print("${firebaseAuth.currentUser!.uid}");
               
               return const Homescreen();
             } else {

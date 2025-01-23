@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:imamzuhri/screens/loginscreen.dart';
+
 
 class Homescreen extends StatefulWidget {
   const Homescreen({super.key});
@@ -19,6 +19,7 @@ class _HomescreenState extends State<Homescreen> {
             onPressed: () {
               FirebaseAuth.instance.signOut();
               //return const LoginScreen();
+               Navigator.pushNamed(context, '/loginscreen');
             },
             child: const Text('sign out')),
       ),

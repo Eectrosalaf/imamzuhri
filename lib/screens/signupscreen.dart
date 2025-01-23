@@ -30,18 +30,28 @@ class _SignupScreenState extends State<SignupScreen> {
   TextEditingController categoryController = TextEditingController();
   AuthenticationMethods authenticationMethods = AuthenticationMethods();
   bool isLoading = false;
+  late FocusNode focusNode;
+  bool isInFocus = false;
 
-  //  @override
+  List<String> categories = ['Beginner', 'Intermediate', "Advanced"];
+  String dropdownvalue = 'Item 1';
+  @override
+  void initState() {
+    super.initState();
+    focusNode = FocusNode();
 
-  //  void dispose() {
-  //   super.dispose();
-  //   nameController.clear();
-  //   emailController.dispose();
-  //   addressController.dispose();
-  //   passwordController.dispose();
-  //   phoneController.dispose();
-  //   categoryController.dispose();
-  // }
+    focusNode.addListener(() {
+      if (focusNode.hasFocus) {
+        setState(() {
+          isInFocus = true;
+        });
+      } else {
+        setState(() {
+          isInFocus = false;
+        });
+      }
+    });
+  }
 
   @override
   void dispose() {
@@ -142,8 +152,6 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
                 CustomTextfield(
                   controller: addressController,
-              
-                 
                   hintText: 'Address',
                   hintStyle: const TextStyle(color: Colors.grey),
                 ),
@@ -180,15 +188,58 @@ class _SignupScreenState extends State<SignupScreen> {
                 const SizedBox(
                   height: 8,
                 ),
-                CustomTextfield(
-                  onSuffixIconTapped:(){
-                    
-                  } ,
-                  suffixIcon: const Icon(Icons.arrow_drop_down,size: 20,),
+
+                
+                TextField(
                   controller: categoryController,
-                  hintText: "Category",
-                  hintStyle: const TextStyle(color: Colors.grey),
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white,
+                    prefixIcon: null,
+                    labelText: null,
+                    hintStyle: null,
+                    hintText: 'category',
+                    labelStyle: GoogleFonts.poppins(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 14,
+                        color: Colors.black),
+                    contentPadding: const EdgeInsets.symmetric(
+                        vertical: 2, horizontal: 30.0),
+                    border: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                    ),
+                    enabledBorder: const OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Color(0xff9e9c9c), width: 1.0),
+                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: isInFocus
+                              ? DesignColors.primaryColor
+                              : Colors.black,
+                          width: 1.0),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(15.0)),
+                    ),
+                    hoverColor: const Color(0xff27770B),
+                    suffixIcon: PopupMenuButton<String>(
+                      icon: const Icon(Icons.keyboard_arrow_down,size: 20,),
+                      onSelected: (String value) {
+                        categoryController.text = value;
+                      },
+                      itemBuilder: (BuildContext context) {
+                        return categories
+                            .map<PopupMenuItem<String>>((String value) {
+                          return PopupMenuItem(
+                              value: value, child: Text(value));
+                        }).toList();
+                      },
+                    ),
+                  ),
                 ),
+                
+
                 const SizedBox(
                   height: 24,
                 ),
@@ -240,8 +291,6 @@ class _SignupScreenState extends State<SignupScreen> {
                     tcolour: Colors.white,
                     title: 'Register',
                     onPressed: () async {
-                     
-
                       String output = await authenticationMethods.signUpUser(
                         category: categoryController.text,
                         name: nameController.text,
@@ -250,7 +299,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         password: passwordController.text,
                         phone: phoneController.text,
                       );
-                       nameController.clear();
+                      nameController.clear();
                       emailController.clear();
                       addressController.clear();
                       passwordController.clear();
@@ -289,17 +338,17 @@ class _SignupScreenState extends State<SignupScreen> {
                                 duration: const Duration(seconds: 10),
                                 curve: Curves.linearToEaseOut,
                                 child: Notifyalert(
-                                  onpressed: () {
-                                    Navigator.pushNamed(
-                                        context, '/signupscreen');
-                                  },
-                                  title: 'Opps!',
-                                  btntitle: 'Sign Up Again',
-                                  details: output
-                                     
-                                  // controller: _controller,
-                                  // onsaved: savetask,
-                                ),
+                                    onpressed: () {
+                                      Navigator.pushNamed(
+                                          context, '/signupscreen');
+                                    },
+                                    title: 'Opps!',
+                                    btntitle: 'Sign Up Again',
+                                    details: output
+
+                                    // controller: _controller,
+                                    // onsaved: savetask,
+                                    ),
                               );
                             });
                       }
