@@ -36,14 +36,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       duration: const Duration(milliseconds: 200),
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.all(
-          Radius.circular(50),
+          Radius.circular(20),
         ),
         color: DesignColors.primaryColor,
       ),
       margin: const EdgeInsets.only(left: 3),
-      height: 8,
+      height: 5,
       curve: Curves.easeIn,
-      width: _currentPage == index ? 20 : 10,
+      width: _currentPage == index ? 40 : 15,
     );
   }
 
@@ -69,32 +69,20 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   return Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         const SizedBox(
                           height: 50,
                         ),
                         Center(
-                          child: AnimatedContainer(
-                            curve: Curves.bounceIn,
-                            transform:Matrix4.rotationX(0.5),
-                            duration: const Duration(microseconds: 300),
-                            decoration: const BoxDecoration(
-                                color: DesignColors.primaryColor,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(15))),
-        
-                            height: 330,
-                            width: double.infinity,
-                            // color: DesignColors.primaryColor,
-                            child: Image.asset(
-                              fit: BoxFit.contain,
-                              contents[i].image,
-                            ),
+                          child: Image.asset(
+                            fit: BoxFit.contain,
+                            contents[i].image,
                           ),
                         ),
                         const SizedBox(
-                          height: 40,
+                          height: 20,
                           //   //height: (height >= 840) ? 60 : 30,
                         ),
                         Text(
@@ -106,7 +94,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           ),
                           textAlign: TextAlign.left,
                         ),
-                        const SizedBox(height: 20),
+                      //  const SizedBox(height: 0),
                         Text(
                           contents[i].desc,
                           style: GoogleFonts.poppins(
@@ -119,7 +107,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         const SizedBox(height: 20),
                         Row(
                           // crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: List.generate(
                             contents.length,
                             (int index) => _buildDots(
@@ -159,15 +147,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                   height: 16,
                                 ),
                                 Botton(
-                                    bcolour: Colors.transparent,
+                                    bcolour: DesignColors.primaryColor,
                                     colour: DesignColors.primaryColor,
-                                    gradient: const LinearGradient(
-                                        colors: [
-                                          Color(0xff0d5c58),
-                                          Color.fromARGB(255, 21, 168, 161),
-                                        ],
-                                        begin: Alignment.topCenter,
-                                        end: Alignment.bottomCenter),
+                                    // // gradient: const LinearGradient(
+                                    // //     colors: [
+                                    // //       Color(0xff0d5c58),
+                                    // //       Color.fromARGB(255, 21, 168, 161),
+                                    // //     ],
+                                    //     begin: Alignment.topCenter,
+                                    //     end: Alignment.bottomCenter),
                                     tcolour: Colors.white,
                                     title: 'Register',
                                     onPressed: () {
@@ -197,11 +185,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                   height: 20,
                                 ),
                                 Botton(
-                                  bcolour: Colors.transparent,
-                                  gradient: const LinearGradient(colors: [
-                                     Color(0xff0d5c58),
-                                          Color.fromARGB(255, 21, 168, 161),
-                                  ]),
+                                  bcolour:  DesignColors.primaryColor,
+                                  // gradient: const LinearGradient(colors: [
+                                  //    Color(0xff0d5c58),
+                                  //         Color.fromARGB(255, 21, 168, 161),
+                                  // ]),
                                   colour: DesignColors.primaryColor,
                                   tcolour: Colors.white,
                                   title: 'Skip',

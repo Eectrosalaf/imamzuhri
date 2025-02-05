@@ -162,12 +162,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
                 Botton(
-                    bcolour: Colors.transparent,
+                    bcolour: DesignColors.primaryColor,
                     colour: DesignColors.primaryColor,
-                    gradient: const LinearGradient(colors: [
-                      Color(0xff0d5c58),
-                      Color.fromARGB(255, 21, 168, 161),
-                    ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+                    // gradient: const LinearGradient(colors: [
+                    //   Color(0xff0d5c58),
+                    //   Color.fromARGB(255, 21, 168, 161),
+                    // ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
                     tcolour: Colors.white,
                     title: 'Log in',
                     onPressed: () async {
@@ -203,8 +203,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     btntitle: 'Log in Again',
                                     details: output
 
-                                    // controller: _controller,
-                                    // onsaved: savetask,
+                            
                                     ),
                               );
                             });

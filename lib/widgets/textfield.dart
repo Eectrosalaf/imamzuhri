@@ -90,17 +90,17 @@ class _CustomTextfieldState extends State<CustomTextfield> {
           contentPadding:
               const EdgeInsets.symmetric(vertical: 2, horizontal: 30.0),
           border: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(15.0)),
+            borderRadius: BorderRadius.all(Radius.circular(30.0)),
           ),
           enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Color(0xff9e9c9c), width: 1.0),
-            borderRadius: BorderRadius.all(Radius.circular(15.0)),
+            borderRadius: BorderRadius.all(Radius.circular(30.0)),
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
                 color: isInFocus ? DesignColors.primaryColor : Colors.black,
                 width: 1.0),
-            borderRadius: const BorderRadius.all(Radius.circular(15.0)),
+            borderRadius: const BorderRadius.all(Radius.circular(30.0)),
           ),
         ));
   }

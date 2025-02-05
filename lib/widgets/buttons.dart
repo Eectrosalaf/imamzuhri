@@ -36,7 +36,7 @@ class Botton extends StatelessWidget {
           //elevation: 4,
           backgroundColor: bcolour,
           shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
           textStyle: const TextStyle(
             color: Colors.white,
             fontSize: 24,
